@@ -15,26 +15,22 @@
 % SystemStates = ['x','y','z'];
 % SystemInputs = ['u'];
 % LaplacianMatrix = LinearLaplacianGenerator(3)
-% Option = 'Neighbor';
 % Rhodegree = 2;
 % WriterRho1(SystemStates,SystemInputs,LaplacianMatrix,Option,Rhodegree)
 % 
 % 
 % end
 % 
-% function WriterRho1(SystemStates,SystemInputs,LaplacianMatrix,Option,Rhodegree)
+% function WriterRho1(SystemStates,SystemInputs,LaplacianMatrix,Rhodegree)
 
-function WriterRho(SystemStates,SystemInputs,LaplacianMatrix,Option,Rhodegree)
+function WriterRho(SystemStates,SystemInputs,LaplacianMatrix,Rhodegree)
 
 fid = fopen('PreProcessedRho.m','w');
 
 NumberOfAgents = size(LaplacianMatrix,1);
-NumberOfInputs = length(SystemInputs);
 NumberOfStates = length(SystemStates);
 
-fprintf(fid, '%% NumberOfAgents = %d,\n%% NumberOfInputs = %d,\n%% NumberOfStates = %d,\n',NumberOfAgents,NumberOfInputs,NumberOfStates);
-
-if strcmp(Option,'Neighbor')
+fprintf(fid, '%% NumberOfAgents = %d,\n%% NumberOfStates = %d,\n',NumberOfAgents,NumberOfStates);
     
     fprintf(fid, '\n%% Option = %s\n',Option);
     
@@ -94,8 +90,6 @@ if strcmp(Option,'Neighbor')
             fprintf(fid, '; ');
         end
     end
-    
-end
 
 fclose(fid);
 

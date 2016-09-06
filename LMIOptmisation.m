@@ -65,7 +65,7 @@ Rhodegree = 2;
 WriterRho(SystemStates,LaplacianMatrix,Rhodegree)
 PreProcessedRho
 
-WriterMI(SystemStates,LaplacianMatrix,ScalingFactor,lambda,Option)
+WriterMI(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
 PreProcessedMI
 
 Constraints = [WConstraints;MIConstraints];

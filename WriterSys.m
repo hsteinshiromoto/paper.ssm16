@@ -1,17 +1,17 @@
-% function test
-% 
-% SystemStates = ['x','y'];
-% SystemInputs = ['u'];
-% SystemParameters = ['d'];
-% Simulation = 0;
-% LaplacianMatrix = LinearLaplacianGenerator(4)
-% WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
-% 
-% end
-% 
-% function WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
+function test
 
-function WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
+SystemStates = ['x','y','z'];
+SystemInputs = ['u'];
+SystemParameters = ['d'];
+Simulation = 0;
+LaplacianMatrix = LinearLaplacianGenerator(3)
+WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
+
+end
+
+function WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
+
+% function WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 
 fid = fopen('PreProcessedSys.m','w');
 
@@ -173,7 +173,7 @@ for SystemStatesCounter = 1:length(SystemStates)
         
         if SystemStatesCounter == 1
             
-            fprintf(fid, '-%s%s - %s%s^3 + %s%s^2 -%s*(',SystemStates(1),num2str(AgentsCounter),SystemStates(1),num2str(AgentsCounter),SystemStates(2),num2str(AgentsCounter),SystemParameters(1));
+            fprintf(fid, '-%s%s + %s%s - %s*(',SystemStates(1),num2str(AgentsCounter),SystemStates(3),num2str(AgentsCounter),SystemParameters(1));
             
             for AgentsCounter2 = 1:NumberOfAgents
                 
@@ -199,9 +199,13 @@ for SystemStatesCounter = 1:length(SystemStates)
                 
             end
             
+        elseif SystemStatesCounter == 2
+            
+             fprintf(fid, '%s%s.^2 - %s%s -2*%s%s*%s%s + %s%s;\n',SystemStates(1),num2str(AgentsCounter),SystemStates(2),num2str(AgentsCounter),SystemStates(1),num2str(AgentsCounter),SystemStates(3),num2str(AgentsCounter),SystemStates(3),num2str(AgentsCounter));
+            
         else
             
-            fprintf(fid, '%s%s;\n',SystemInputs(1),num2str(AgentsCounter));
+             fprintf(fid, '-%s%s + %s%s;\n',SystemStates(2),num2str(AgentsCounter),SystemInputs(1),num2str(AgentsCounter));
             
         end
         

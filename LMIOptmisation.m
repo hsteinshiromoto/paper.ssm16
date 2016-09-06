@@ -70,7 +70,7 @@ PreProcessedMI
 
 Constraints = [WConstraints;MIConstraints];
 checkset(Constraints)
-coefList = [Wc;Yc];
+coefList = [Wc;Rhoc];
 options = sdpsettings('solver','mosek','verbose',1);
 tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);

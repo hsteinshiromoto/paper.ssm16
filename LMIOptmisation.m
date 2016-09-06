@@ -8,7 +8,7 @@ global Simulation SystemStates SystemInputs
 global SystemParameters d
 
 Simulation   = 0;
-SystemStates = ['x','y'];
+SystemStates = ['x','y','z'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
 d = 1e-2;

@@ -1,3 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                         %
+% File: WriterMI                                                          %
+% Git Branch: Master                                                      %
+% Author: H. Stein Shiromoto                                              %
+%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % function test
 % 
 % SystemStates = ['x','y','z'];
@@ -17,7 +25,7 @@ fid = fopen('PreProcessedMI.m','w');
 NumberOfAgents = size(LaplacianMatrix,1);
 NumberOfStates = length(SystemStates);
 
-fprintf(fid, 'MI = -DW + A*W + transpose(A*W) + R*B*transpose(B) + 2*%f*W;\n\n',lambda);
+fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - R*B*transpose(B) + 2*%f*W;\n\n',lambda);
     
     for AgentsCounter = 1:NumberOfAgents
         fprintf(fid, 'Block%s = ',num2str(AgentsCounter));

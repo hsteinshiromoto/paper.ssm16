@@ -1,3 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                         %
+% File: LMIOptimisation                                                   %
+% Git Branch: Master                                                      %
+% Author: H. Stein Shiromoto                                              %
+%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function caller
 clear all
 close all

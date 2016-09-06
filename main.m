@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
-% Title: Simulation of system (19) from [AS14].                           %
+% Title: Simulation of system (59) from [AS14].                           %
 % Author: H. Stein Shiromoto                                              %
 % Notes: DIfference: Nonlinear diffusion works with d<=1e-2               %
 %                                                                         %
@@ -38,7 +38,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
     
 end
 
-NAgents = 4;
+NAgents = 3;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);

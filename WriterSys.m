@@ -1,17 +1,17 @@
-function test
+% function test
+% 
+% SystemStates = ['x','y','z'];
+% SystemInputs = ['u'];
+% SystemParameters = ['d'];
+% Simulation = 0;
+% LaplacianMatrix = LinearLaplacianGenerator(3)
+% WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
+% 
+% end
+% 
+% function WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 
-SystemStates = ['x','y','z'];
-SystemInputs = ['u'];
-SystemParameters = ['d'];
-Simulation = 0;
-LaplacianMatrix = LinearLaplacianGenerator(3)
-WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
-
-end
-
-function WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
-
-% function WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
+function WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 
 fid = fopen('PreProcessedSys.m','w');
 

@@ -32,8 +32,6 @@ NumberOfStates = length(SystemStates);
 
 fprintf(fid, '%% NumberOfAgents = %d,\n%% NumberOfStates = %d,\n',NumberOfAgents,NumberOfStates);
     
-    fprintf(fid, '\n%% Option = %s\n',Option);
-    
     for RowAgentsCounter = 1:NumberOfAgents
         
         flag = 1;

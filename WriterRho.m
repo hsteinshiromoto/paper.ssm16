@@ -23,7 +23,7 @@
 % 
 % function WriterRho1(SystemStates,SystemInputs,LaplacianMatrix,Rhodegree)
 
-function WriterRho(SystemStates,SystemInputs,LaplacianMatrix,Rhodegree)
+function WriterRho(SystemStates,LaplacianMatrix,Rhodegree)
 
 fid = fopen('PreProcessedRho.m','w');
 

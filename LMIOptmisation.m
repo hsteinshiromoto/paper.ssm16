@@ -61,8 +61,8 @@ ScalingFactor = 1;
 WriterW(SystemStates,LaplacianMatrix,Wdegree,ScalingFactor)
 PreProcessedW
 
-Ydegree = 2;
-WriterY(SystemStates,SystemInputs,LaplacianMatrix,Option,Ydegree)
+Rhodegree = 2;
+WriterY(SystemStates,SystemInputs,LaplacianMatrix,Option,Rhodegree)
 PreProcessedY
 
 WriterMI(SystemStates,LaplacianMatrix,ScalingFactor,lambda,Option)

@@ -33,7 +33,7 @@ if NumberOfAgents > 1
     
     for AgentCounter = 1:NumberOfAgents
         
-        fprintf(fid, 'sos(-MI(%d:%d,%d:%d) + %f*eye(size(MI(%d:%d,%d:%d)))); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,ScalingFactor,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates);
+        fprintf(fid, 'sos(-MI(%d:%d,%d:%d) - %f*eye(size(MI(%d:%d,%d:%d)))); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,ScalingFactor,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates);
         
         if AgentCounter == 1
             fprintf(fid, 'sos(MI(%d:%d,%d:%d) - MI(%d:%d,%d:%d) - %f*eye(3)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates + 1,AgentCounter*NumberOfStates + NumberOfStates,ScalingFactor);

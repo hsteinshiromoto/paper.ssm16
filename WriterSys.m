@@ -11,12 +11,13 @@
 % SystemStates = ['x','y','z'];
 % SystemInputs = ['u'];
 % SystemParameters = ['d'];
+% SystemParameters = 10;
 % Simulation = 0;
 % LaplacianMatrix = LinearLaplacianGenerator(3)
 % WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 % 
 % end
-% 
+
 % function WriterSys1(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 
 function WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
@@ -25,16 +26,6 @@ fid = fopen('PreProcessedSys.m','w');
 
 NumberOfAgents  = size(LaplacianMatrix,1);
 Counter = 1;
-
-fprintf(fid, '%% System Parameters: %s\n\n',SystemParameters);
-
-fprintf(fid, 'global ');
-
-for SystemParametersCounter = 1:length(SystemParameters)
-    
-    fprintf(fid, '%s ',SystemParameters(SystemParametersCounter));
-    
-end
 
 fprintf(fid, '\n\n%% Writing System States: %s\n\n',SystemStates);
 
@@ -181,7 +172,7 @@ for SystemStatesCounter = 1:length(SystemStates)
         
         if SystemStatesCounter == 1
             
-            fprintf(fid, '-%s%s + %s%s - %s*(',SystemStates(1),num2str(AgentsCounter),SystemStates(3),num2str(AgentsCounter),SystemParameters(1));
+            fprintf(fid, '-%s%s + %s%s - %d*(',SystemStates(1),num2str(AgentsCounter),SystemStates(3),num2str(AgentsCounter),SystemParameters(1));
             
             for AgentsCounter2 = 1:NumberOfAgents
                 

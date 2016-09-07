@@ -1,9 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
-% Title: Pre Processing Rho                                                 %
+% Git Branch: Master                                                      %
+% Title: Pre Processing Rho                                               %
 % Description: Creates the matrix R for the LMI optmization               %
-% Inputs: nr. Integer, Scalar, Number of Rows                            %
-%         nc. Integer, Scalar, Number of Columns   %
+% Inputs: nr. Integer, Scalar, Number of Rows                             %
+%         nc. Integer, Scalar, Number of Columns                          %
 % Output: File 'CreatorWandDW.m' with the code definifn W and DW          %
 % Author: Humberto Stein Shiromoto                                        %
 %                                                                         %

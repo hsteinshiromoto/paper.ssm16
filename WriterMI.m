@@ -27,27 +27,32 @@ NumberOfStates = length(SystemStates);
 
 fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - R*B*transpose(B) + 2*%f*W;\n\n',lambda);
 
+
+for AgentsCounter = 1:NumberOfAgents - 1
     
-    for AgentsCounter = 1:NumberOfAgents
+    fprintf(fid, 'Block%s = ',num2str(AgentsCounter));
+    
+    if AgentsCounter == 1
+        fprintf(fid, 'MI(1:6,1:6);\n');
         
-        fprintf(fid, 'Block%s = ',num2str(AgentsCounter));
+    else
+        fprintf(fid, 'MI(4:9,4:9);\n');
         
-        if AgentsCounter == 1
-            fprintf(fid, 'MI(1:3,1:3);\n');
-        elseif AgentsCounter == 2
-            fprintf(fid, 'MI(4:6,4:6);\n');
-        else
-            fprintf(fid, 'MI(7:9,7:9);\n');
-        end
-        
-        fprintf(fid, 'Block%s(3,3) = Block%s(3,3)/2;\n',num2str(AgentsCounter),num2str(AgentsCounter));
-        fprintf(fid, '\n');
     end
+    fprintf(fid, 'Block%s(3:end,3:end) = Block%s(3:end,3:end)/2;\n',num2str(AgentsCounter),num2str(AgentsCounter));
     
-    fprintf(fid, 'MIConstraints = [');
-    for AgentsCounter = 1:NumberOfAgents
+    fprintf(fid, '\n');
+end
+
+fprintf(fid, 'MIConstraints = [');
+if NumberOfAgents > 1
+    for AgentsCounter = 1:NumberOfAgents-1
         fprintf(fid, 'sos(-Block%s + %f*eye(size(Block%s)));',num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter));
     end
+else
+    fprintf(fid, 'sos(-MI + %f*eye(size(MI)));',ScalingFactor);
+end
+    
     
     fprintf(fid, '];');
     

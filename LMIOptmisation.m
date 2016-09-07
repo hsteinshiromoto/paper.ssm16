@@ -19,12 +19,12 @@ Simulation   = 0;
 SystemStates = ['x','y','z'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-d = 1e-3;
-% d = 0;
+% d = 1e-5;
+d = 0;
 lambda = 0.5;
 Option       = 'General';
 
-NumberOfAgents = 3
+NumberOfAgents = 1
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)
@@ -65,13 +65,13 @@ global Simulation SystemStates SystemInputs SystemParameters
 WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 PreProcessedSys
 
-Wdegree = 0;
-ScalingFactor = 1e-3;
-WriterW(SystemStates,LaplacianMatrix,Wdegree,ScalingFactor)
+Wdegree = 2;
+ScalingFactor = 1;
+% WriterW(SystemStates,LaplacianMatrix,Wdegree,ScalingFactor)
 PreProcessedW
 
 Rhodegree = 2;
-WriterRho(SystemStates,LaplacianMatrix,Rhodegree)
+% WriterRho(SystemStates,LaplacianMatrix,Rhodegree)
 PreProcessedRho
 
 WriterMI(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
@@ -85,7 +85,7 @@ tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 SolverTime = toc;
 
-Precision = 1e-3;
+Precision = 1e-8;
 AnalysisW(SystemStates,LaplacianMatrix,Precision)
 PostProcessedW
 

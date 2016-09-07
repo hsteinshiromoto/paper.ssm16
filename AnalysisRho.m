@@ -1,43 +1,38 @@
-function AnalysisY(SystemInputs,LaplacianMatrix,Precision)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                         %
+% File: AnalysisRho                                                       %
+% Git Branch: Master                                                      %
+% Author: H. Stein Shiromoto                                              %
+%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-fid = fopen('PostProcessedY.m','w');
+function AnalysisRho(SystemStates,LaplacianMatrix,Precision)
+
+fid = fopen('PostProcessedRho.m','w');
 
 NumberOfAgents = size(LaplacianMatrix,1);
-NumberOfInputs = length(SystemInputs);
+NumberOfStates = length(SystemStates);
 
-for RowCounter = 1:NumberOfAgents
-    for ColumnCounter = 1:NumberOfAgents*NumberOfInputs*2
-        fprintf(fid, 'VerifiedY%s%s = ', num2str(RowCounter),num2str(ColumnCounter));
-        fprintf(fid, 'clean(replace(Y(%s,%s), coefList, double(coefList)), %s);\n', num2str(RowCounter),num2str(ColumnCounter),num2str(Precision));
-        fprintf(fid, 'Y%s%s = ', num2str(RowCounter),num2str(ColumnCounter));
-        fprintf(fid, 'sdisplay(VerifiedY%s%s);\n\n', num2str(RowCounter),num2str(ColumnCounter));
-        fprintf(fid, 'clear VerifiedY%s%s;\n', num2str(RowCounter),num2str(ColumnCounter));
-    end
+for AgentCounter = 1:NumberOfAgents
+        fprintf(fid, 'VerifiedRho%s = ', num2str(AgentCounter));
+        fprintf(fid, 'clean(replace(Rho%s), coefList, double(coefList)), %s);\n', num2str(AgentCounter),num2str(Precision));
+        fprintf(fid, 'Rho%s = ', num2str(AgentCounter));
+        fprintf(fid, 'sdisplay(VerifiedRho%s);\n\n', num2str(AgentCounter));
+        fprintf(fid, 'clear VerifiedRho%s;\n', num2str(AgentCounter));
 end
 
-fprintf(fid, 'Y = [');
+fprintf(fid, 'R = blkdiag(');
 
-for RowCounter = 1:NumberOfAgents
+for AgentCounter = 1:NumberOfAgents
     
-    for ColumnCounter = 1:NumberOfAgents*NumberOfInputs*2
-        
-             if ColumnCounter == NumberOfAgents*NumberOfInputs*2 && RowCounter == NumberOfAgents
-                 
-                 fprintf(fid, 'Y%s%s];\n', num2str(RowCounter),num2str(ColumnCounter));
-                 
-             elseif ColumnCounter == NumberOfInputs*NumberOfAgents*2
-            
-                 fprintf(fid, 'Y%s%s;\n', num2str(RowCounter),num2str(ColumnCounter));
-                 fprintf(fid, '     ');
-                 
-             else
-                 
-                 fprintf(fid, 'Y%s%s, ', num2str(RowCounter),num2str(ColumnCounter));
-                 
-             end
-            
-        
+    fprintf(fid, 'Rho%s*eye(%d)', num2str(AgentCounter),NumberOfStates);
+    
+    if AgentCounter == NumberOfAgents
+        fprintf(fid, ');');
+    else
+        fprintf(fid, '; ');
     end
+    
 end
 
 fclose(fid);

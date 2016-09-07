@@ -6,19 +6,19 @@
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% function test
-% 
-% SystemStates = ['x','y','z'];
-% ScalingFactor = 1e-2;
-% lambda = 2;
-% LaplacianMatrix = LinearLaplacianGenerator(3)
-% WriterMI1(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
-% 
-% end
-% 
-% function WriterMI1(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
+function test
 
-function WriterMI(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
+SystemStates = ['x','y','z'];
+ScalingFactor = 1e-2;
+lambda = 2;
+LaplacianMatrix = LinearLaplacianGenerator(3)
+WriterMI1(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
+
+end
+
+function WriterMI1(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
+
+% function WriterMI(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
 
 fid = fopen('PreProcessedMI.m','w');
 
@@ -28,20 +28,25 @@ NumberOfStates = length(SystemStates);
 fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - R*B*transpose(B) + 2*%f*W;\n\n',lambda);
 
 fprintf(fid, 'MIConstraints = [');
-    
+
+
+for AgentCounter = 1:NumberOfAgents
+
+
+            fprintf(fid, 'sos(-MI(%d:%d,%d:%d) + %f*eye(size(MI(%d:%d,%d:%d)))); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,ScalingFactor,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates);
+
+            if AgentCounter == 1
+                fprintf(fid, 'sos(MI(%d:%d,%d:%d) - MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates + 1,AgentCounter*NumberOfStates + NumberOfStates);
+            elseif AgentCounter == NumberOfAgents
+                fprintf(fid, 'sos(MI(%d:%d,%d:%d) - MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,(AgentCounter - 1)*NumberOfStates - (NumberOfStates - 1),(AgentCounter - 1)*NumberOfStates);
+            else
+                fprintf(fid, 'sos(MI(%d:%d,%d:%d) - MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates + 1,AgentCounter*NumberOfStates + NumberOfStates);
+                fprintf(fid, 'sos(MI(%d:%d,%d:%d) - MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,(AgentCounter - 1)*NumberOfStates - (NumberOfStates - 1),(AgentCounter - 1)*NumberOfStates);
+            end
         
-fprintf(fid, 'sos(-MI(1:3,1:3) + %f*eye(size(MI(1:3,1:3)))); ',ScalingFactor);
-fprintf(fid, 'sos(-MI(4:6,4:6) + %f*eye(size(MI(4:6,4:6)))); ',ScalingFactor);
-fprintf(fid, 'sos(-MI(7:9,7:9) + %f*eye(size(MI(7:9,7:9)))); ',ScalingFactor);
-       
-fprintf(fid, 'sos(MI(1:3,1:3) - MI(1:3,4:6));');
+end
 
-fprintf(fid, 'sos(MI(4:6,4:6) - MI(4:6,1:3));');
-fprintf(fid, 'sos(MI(4:6,4:6) - MI(4:6,7:9));');
-
-fprintf(fid, 'sos(MI(7:9,7:9) - MI(7:9,4:6));');
-fprintf(fid, '];');  
-
+fprintf(fid, '];\n\n');
 
 fclose(fid);
 

@@ -13,26 +13,39 @@ fid = fopen('PostProcessedRho.m','w');
 NumberOfAgents = size(LaplacianMatrix,1);
 NumberOfStates = length(SystemStates);
 
-for AgentCounter = 1:NumberOfAgents
-        fprintf(fid, 'VerifiedRho%s = ', num2str(AgentCounter));
-        fprintf(fid, 'clean(replace(Rho%s), coefList, double(coefList)), %s);\n', num2str(AgentCounter),num2str(Precision));
-        fprintf(fid, 'Rho%s = ', num2str(AgentCounter));
-        fprintf(fid, 'sdisplay(VerifiedRho%s);\n\n', num2str(AgentCounter));
-        fprintf(fid, 'clear VerifiedRho%s;\n', num2str(AgentCounter));
+for RowCounter = 1:NumberOfStates*NumberOfAgents
+    for ColumnCounter = 1:NumberOfStates*NumberOfAgents
+        fprintf(fid, 'VerifiedR%s%s = ', num2str(RowCounter),num2str(ColumnCounter));
+        fprintf(fid, 'clean(replace(R(%s,%s), coefList, double(coefList)), %s);\n', num2str(RowCounter),num2str(ColumnCounter),num2str(Precision));
+        fprintf(fid, 'R%s%s = ', num2str(RowCounter),num2str(ColumnCounter));
+        fprintf(fid, 'sdisplay(VerifiedR%s%s);\n\n', num2str(RowCounter),num2str(ColumnCounter));
+        fprintf(fid, 'clear VerifiedR%s%s;\n', num2str(RowCounter),num2str(ColumnCounter));
+    end
 end
 
-fprintf(fid, 'R = blkdiag(');
+fprintf(fid, 'R = [');
 
-for AgentCounter = 1:NumberOfAgents
+for RowCounter = 1:NumberOfStates*NumberOfAgents
     
-    fprintf(fid, 'Rho%s*eye(%d)', num2str(AgentCounter),NumberOfStates);
-    
-    if AgentCounter == NumberOfAgents
-        fprintf(fid, ');');
-    else
-        fprintf(fid, '; ');
+    for ColumnCounter = 1:NumberOfStates*NumberOfAgents
+        
+             if ColumnCounter == NumberOfStates*NumberOfAgents && RowCounter == NumberOfStates*NumberOfAgents
+                 
+                 fprintf(fid, 'R%s%s];\n', num2str(RowCounter),num2str(ColumnCounter));
+                 
+             elseif ColumnCounter == NumberOfStates*NumberOfAgents
+            
+                 fprintf(fid, 'R%s%s;\n', num2str(RowCounter),num2str(ColumnCounter));
+                 fprintf(fid, '     ');
+                 
+             else
+                 
+                 fprintf(fid, 'R%s%s, ', num2str(RowCounter),num2str(ColumnCounter));
+                 
+             end
+            
+        
     end
-    
 end
 
 fclose(fid);

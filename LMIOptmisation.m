@@ -54,8 +54,6 @@ LMIOptimisation(LaplacianMatrix,Option,lambda)
 
 diary off
 
-pause(60)
-
 end
 
 function LMIOptimisation(LaplacianMatrix,Option,lambda)

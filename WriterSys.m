@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
 % File: WriterSys                                                         %
-% Git Branch: Master                                                      %
+% Git Branch: LinearDissipativeInterconnection                            %
 % Author: H. Stein Shiromoto                                              %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,11 +178,11 @@ for SystemStatesCounter = 1:length(SystemStates)
                 
                 if LaplacianMatrix(AgentsCounter,AgentsCounter2) < 0
                     
-                    fprintf(fid, '%s*%s%s^3', num2str(LaplacianMatrix(AgentsCounter,AgentsCounter2)),SystemStates(1),num2str(AgentsCounter2));
+                    fprintf(fid, '%s*%s%s', num2str(LaplacianMatrix(AgentsCounter,AgentsCounter2)),SystemStates(1),num2str(AgentsCounter2));
                     
                 else
                     
-                    fprintf(fid, '+%s*%s%s^3', num2str(LaplacianMatrix(AgentsCounter,AgentsCounter2)),SystemStates(1),num2str(AgentsCounter2));
+                    fprintf(fid, '+%s*%s%s', num2str(LaplacianMatrix(AgentsCounter,AgentsCounter2)),SystemStates(1),num2str(AgentsCounter2));
                     
                 end
                 

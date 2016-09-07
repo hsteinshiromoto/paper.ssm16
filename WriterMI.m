@@ -28,29 +28,19 @@ NumberOfStates = length(SystemStates);
 fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - R*B*transpose(B) + 2*%f*W;\n\n',lambda);
 
 fprintf(fid, 'MIConstraints = [');
-    for AgentsCounter = 1:NumberOfAgents
-        
-        fprintf(fid, 'sos(-MI(%s,%s) + %f*eye(size(MI(%s,%s))))',num2str(AgentsCounter),num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter),num2str(AgentsCounter));
-        
-        if AgentsCounter == 1
-            
-            fprintf(fid, '; sos(MI(%s,%s) - MI(%s,%s + 1))',num2str(AgentsCounter),num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter),num2str(AgentsCounter));
-            
-        elseif AgentsCounter == NumberOfAgents
-            
-            fprintf(fid, '; sos(MI(%s,%s) - MI(%s,%s - 1))',num2str(AgentsCounter),num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter),num2str(AgentsCounter));
-            
-        else
-            
-            fprintf(fid, '; sos(MI(%s,%s) - MI(%s,%s - 1))',num2str(AgentsCounter),num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter),num2str(AgentsCounter));
-            fprintf(fid, '; sos(MI(%s,%s) - MI(%s,%s + 1))',num2str(AgentsCounter),num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter),num2str(AgentsCounter));
-            
-        end
-    end
-
-
-fprintf(fid, '];');
     
+        
+fprintf(fid, 'sos(-MI(1:3,1:3) + %f*eye(size(MI(1:3,1:3)))); ',ScalingFactor);
+fprintf(fid, 'sos(-MI(4:6,4:6) + %f*eye(size(MI(4:6,4:6)))); ',ScalingFactor);
+fprintf(fid, 'sos(-MI(7:9,7:9) + %f*eye(size(MI(7:9,7:9)))); ',ScalingFactor);
+       
+fprintf(fid, 'sos(MI(1:3,1:3) - MI(1:3,4:6));');
+
+fprintf(fid, 'sos(MI(4:6,4:6) - MI(4:6,1:3));');
+fprintf(fid, 'sos(MI(4:6,4:6) - MI(4:6,7:9));');
+
+fprintf(fid, 'sos(MI(7:9,7:9) - MI(7:9,4:6));');
+fprintf(fid, '];');  
 
 
 fclose(fid);

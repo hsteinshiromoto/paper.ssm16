@@ -51,6 +51,7 @@ fprintf(fid, '%% NumberOfAgents = %d,\n%% NumberOfStates = %d,\n',NumberOfAgents
                 
                 for i=1:length(NonZeroIndexes)
                     fprintf(fid, 'x%s;',num2str(NonZeroIndexes(i)));
+%                     fprintf(fid, 'q%s;',num2str(NonZeroIndexes(i)));
                 end
                 fprintf(fid, '],%d,0);\n',Rhodegree);
                 

@@ -19,8 +19,9 @@ Simulation   = 0;
 SystemStates = ['x','y','z'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-d = 1e-2;
-lambda = 1;
+d = 1e-3;
+% d = 0;
+lambda = 0.5;
 Option       = 'General';
 
 NumberOfAgents = 3
@@ -64,8 +65,8 @@ global Simulation SystemStates SystemInputs SystemParameters
 WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 PreProcessedSys
 
-Wdegree = 2;
-ScalingFactor = 1;
+Wdegree = 0;
+ScalingFactor = 1e-3;
 WriterW(SystemStates,LaplacianMatrix,Wdegree,ScalingFactor)
 PreProcessedW
 
@@ -88,10 +89,10 @@ Precision = 1e-3;
 AnalysisW(SystemStates,LaplacianMatrix,Precision)
 PostProcessedW
 
-AnalysisY(SystemInputs,LaplacianMatrix,Precision)
-PostProcessedY
+AnalysisRho(SystemStates,LaplacianMatrix,Precision)
+PostProcessedRho
 
 NumberOfAgents = size(LaplacianMatrix,1);
-fname = sprintf('Output%s%dAgents',Option,NumberOfAgents);
+fname = sprintf('Output%dAgents',NumberOfAgents);
 save(fname)
 end

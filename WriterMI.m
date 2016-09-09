@@ -35,15 +35,6 @@ if NumberOfAgents > 1
         
         fprintf(fid, 'sos(-MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates);
         
-        if AgentCounter == 1
-            fprintf(fid, 'sos(-MI(%d:%d,%d:%d) + MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates + 1,AgentCounter*NumberOfStates + NumberOfStates);
-        elseif AgentCounter == NumberOfAgents
-            fprintf(fid, 'sos(-MI(%d:%d,%d:%d) + MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,(AgentCounter - 1)*NumberOfStates - (NumberOfStates - 1),(AgentCounter - 1)*NumberOfStates);
-        else
-            fprintf(fid, 'sos(-MI(%d:%d,%d:%d) + MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates + 1,AgentCounter*NumberOfStates + NumberOfStates);
-            fprintf(fid, 'sos(-MI(%d:%d,%d:%d) + MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,(AgentCounter - 1)*NumberOfStates - (NumberOfStates - 1),(AgentCounter - 1)*NumberOfStates);
-        end
-        
     end
     
 else

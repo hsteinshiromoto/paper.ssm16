@@ -7,16 +7,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % function test
-%
+% 
 % SystemStates = ['x','y','z'];
-% ScalingFactor = 1e-2;
 % lambda = 2;
 % LaplacianMatrix = LinearLaplacianGenerator(3)
-% WriterMI1(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
-%
+% WriterMI1(SystemStates,LaplacianMatrix,lambda)
+% 
 % end
-%
-% function WriterMI1(SystemStates,LaplacianMatrix,ScalingFactor,lambda)
+
+% function WriterMI1(SystemStates,LaplacianMatrix,lambda)
 
 function WriterMI(SystemStates,LaplacianMatrix,lambda)
 
@@ -27,21 +26,32 @@ NumberOfStates = length(SystemStates);
 
 fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - R*B*transpose(B) + 2*%f*W;\n\n',lambda);
 
-fprintf(fid, 'MIConstraints = [');
+
 
 if NumberOfAgents > 1
     
-    for AgentCounter = 1:NumberOfAgents
+    for AgentCounter = 1:NumberOfAgents - 1
         
-        fprintf(fid, 'sos(-MI(%d:%d,%d:%d)); ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*NumberOfStates);
-        
+        fprintf(fid, 'block%d = ',AgentCounter);
+        if AgentCounter == 1
+            fprintf(fid, '-MI(%d:%d,%d:%d);\n ',AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*2*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),AgentCounter*2*NumberOfStates);
+        else
+            fprintf(fid, '-MI(%d:%d,%d:%d);\n ',AgentCounter*NumberOfStates - (NumberOfStates - 1),(AgentCounter + 1)*NumberOfStates,AgentCounter*NumberOfStates - (NumberOfStates - 1),(AgentCounter + 1)*NumberOfStates);
+        end
+        fprintf(fid, 'block%d(4:6,4:6) = block%d(4:6,4:6)/2; \n\n',AgentCounter,AgentCounter);
     end
+    fprintf(fid, 'MIConstraints = [');
+    for AgentCounter = 1:NumberOfAgents - 1
+        fprintf(fid, 'sos(block%d);',AgentCounter);
+    end
+
+    fprintf(fid, '];\n\n');
+
     
 else
     fprintf(fid, 'sos(-MI)');
 end
 
-fprintf(fid, '];\n\n');
 
 fclose(fid);
 

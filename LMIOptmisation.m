@@ -24,7 +24,7 @@ SystemParameters = 1e-3;
 lambda = 0.5;
 Option       = 'General';
 
-NumberOfAgents = 2
+NumberOfAgents = 3
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)

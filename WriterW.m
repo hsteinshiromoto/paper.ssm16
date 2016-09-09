@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
 % Title: Writer W                                                         %
-% Git Branch: Master                                                      %
+% Git Branch: LinearDissipativeInterconnection                            %
 % Description: Creates the matrices W and DW for the LMI optmization      %
 % Inputs: N. Integer, Scalar, Number of Agents                            %
 %         SystemDimension. Integer, Scalar, Dimension of Each Subsystem   %
@@ -49,8 +49,8 @@ for AgentsCounter = 1:NumberOfAgents
                 fprintf(fid, 'Wc%s%s%s,', num2str(AgentsCounter),num2str(RowCounter),num2str(ColumnCounter));
                 fprintf(fid, 'Wv%s%s%s]', num2str(AgentsCounter),num2str(RowCounter),num2str(ColumnCounter));
                 fprintf(fid, ' = polynomial(');
-%                 fprintf(fid, '[x%s;y%s],', num2str(AgentsCounter),num2str(AgentsCounter));
-                fprintf(fid, 'q%s,', num2str(AgentsCounter));
+                fprintf(fid, '[x%s;y%s],', num2str(AgentsCounter),num2str(AgentsCounter));
+%                 fprintf(fid, 'q%s,', num2str(AgentsCounter));
                 fprintf(fid, '%d,0);\n',Wdegree);
             
             end

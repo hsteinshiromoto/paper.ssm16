@@ -50,8 +50,7 @@ fprintf(fid, '%% NumberOfAgents = %d,\n%% NumberOfStates = %d,\n',NumberOfAgents
                 fprintf(fid, ' = polynomial([');
                 
                 for i=1:length(NonZeroIndexes)
-                  fprintf(fid, '[x%s;y%s];',num2str(NonZeroIndexes(i)));
-%                     fprintf(fid, 'q%s;',num2str(NonZeroIndexes(i)));
+                  fprintf(fid, 'q%s;',num2str(NonZeroIndexes(i)));
                 end
                 fprintf(fid, '],%d,0);\n',Rhodegree);
                 

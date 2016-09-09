@@ -83,7 +83,7 @@ tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 SolverTime = toc;
 
-Precision = 1e-6;
+Precision = 1e-4;
 AnalysisW(SystemStates,LaplacianMatrix,Precision)
 PostProcessedW
 

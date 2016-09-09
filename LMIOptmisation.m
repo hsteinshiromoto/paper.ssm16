@@ -19,12 +19,12 @@ Simulation   = 0;
 SystemStates = ['x','y','z'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-SystemParameters = 1e-3;
+SystemParameters = 1e-2;
 % SystemParameters = 0;
 lambda = 0.5;
 Option       = 'General';
 
-NumberOfAgents = 2
+NumberOfAgents = 3
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)
@@ -83,7 +83,7 @@ tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 SolverTime = toc;
 
-Precision = 1e-12;
+Precision = 1e-6;
 AnalysisW(SystemStates,LaplacianMatrix,Precision)
 PostProcessedW
 

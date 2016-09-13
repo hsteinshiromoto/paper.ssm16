@@ -65,7 +65,7 @@ fprintf(fid, '%% NumberOfAgents = %d,\n%% NumberOfStates = %d,\n',NumberOfAgents
     fprintf(fid, 'R = blkdiag(');
     for AgentsCounter = 1:NumberOfAgents
         
-        fprintf(fid, 'Rhop%s*eye(%d)',num2str(AgentsCounter),NumberOfStates);
+        fprintf(fid, 'Rhop%s',num2str(AgentsCounter));
         
         if AgentsCounter == NumberOfAgents
             

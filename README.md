@@ -3,4 +3,4 @@ Algorithms employed in the example.
 
 Dependencies: Yalmip and mosek
 
-To exceute, run file LMIOptimization.m
+To exceute, run file LMIOptimisation.m

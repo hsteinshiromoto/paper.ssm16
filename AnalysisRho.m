@@ -13,8 +13,8 @@ fid = fopen('PostProcessedRho.m','w');
 NumberOfAgents = size(LaplacianMatrix,1);
 NumberOfStates = length(SystemStates);
 
-for RowCounter = 1:NumberOfStates*NumberOfAgents
-    for ColumnCounter = 1:NumberOfStates*NumberOfAgents
+for RowCounter = 1:NumberOfAgents
+    for ColumnCounter = 1:NumberOfAgents
         fprintf(fid, 'VerifiedR%s%s = ', num2str(RowCounter),num2str(ColumnCounter));
         fprintf(fid, 'clean(replace(R(%s,%s), coefList, double(coefList)), %s);\n', num2str(RowCounter),num2str(ColumnCounter),num2str(Precision));
         fprintf(fid, 'R%s%s = ', num2str(RowCounter),num2str(ColumnCounter));
@@ -25,15 +25,15 @@ end
 
 fprintf(fid, 'R = [');
 
-for RowCounter = 1:NumberOfStates*NumberOfAgents
+for RowCounter = 1:NumberOfAgents
     
-    for ColumnCounter = 1:NumberOfStates*NumberOfAgents
+    for ColumnCounter = 1:NumberOfAgents
         
-             if ColumnCounter == NumberOfStates*NumberOfAgents && RowCounter == NumberOfStates*NumberOfAgents
+             if ColumnCounter == NumberOfAgents && RowCounter == NumberOfAgents
                  
                  fprintf(fid, 'R%s%s];\n', num2str(RowCounter),num2str(ColumnCounter));
                  
-             elseif ColumnCounter == NumberOfStates*NumberOfAgents
+             elseif ColumnCounter == NumberOfAgents
             
                  fprintf(fid, 'R%s%s;\n', num2str(RowCounter),num2str(ColumnCounter));
                  fprintf(fid, '     ');

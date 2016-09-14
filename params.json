@@ -1,6 +1,6 @@
 {
   "name": "CDC2016",
   "tagline": "Algorithms employed in the example",
-  "body": "### Purpose\r\nHere, you may download the algorithms employed in the example considered in the paper\r\n\r\nH. Stein Shiromoto, I. R. Manchester, \"Decentralized Nonlinear Feedback Design with Separable Control Contraction Metrics\", Proceedings of the 55th IEEE Conference on Decision and Control (CDC), Las Vegas, NV, United States of America, 2016, \r\n\r\nPlease cite these algorithms and the paper, in case you are using (a possibly modified version of) them.",
+  "body": "### Purpose\r\nHere, you may download the algorithms employed in the example considered in the paper\r\n\r\nH. Stein Shiromoto, I. R. Manchester, \"Decentralized Nonlinear Feedback Design with Separable Control Contraction Metrics\", Proceedings of the 55th IEEE Conference on Decision and Control (CDC), Las Vegas, NV, United States of America, 2016, \r\n\r\nPlease cite these algorithms and the paper, in case you are using (a possibly modified version of) them.\r\n\r\n### Contact\r\n\r\nCorresponding author: humberto.shiromoto@ieee.org",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }

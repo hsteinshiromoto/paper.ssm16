@@ -19,7 +19,7 @@ Simulation   = 0;
 SystemStates = ['x','y','z'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-SystemParameters = 1e-2;
+SystemParameters = 1e-6;
 % SystemParameters = 0;
 lambda = 0.5;
 Option       = 'General';
@@ -83,7 +83,7 @@ tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 SolverTime = toc;
 
-Precision = 1e-6;
+Precision = 1e-3;
 AnalysisW(SystemStates,LaplacianMatrix,Precision)
 PostProcessedW
 

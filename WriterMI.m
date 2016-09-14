@@ -24,7 +24,7 @@ fid = fopen('PreProcessedMI.m','w');
 NumberOfAgents = size(LaplacianMatrix,1);
 NumberOfStates = length(SystemStates);
 
-fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - R*B*transpose(B) + 2*%f*W;\n\n',lambda);
+fprintf(fid, 'MI = -DW + A*W + transpose(A*W) - B*R*transpose(B) + 2*%f*W;\n\n',lambda);
 
 
 
@@ -49,7 +49,7 @@ if NumberOfAgents > 1
 
     
 else
-    fprintf(fid, 'sos(-MI)');
+    fprintf(fid, 'MIConstraints = [sos(-MI)];\n');
 end
 
 

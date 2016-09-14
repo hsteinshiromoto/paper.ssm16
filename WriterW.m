@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
 % Title: Writer W                                                         %
-% Git Branch: Master                                                      %
+% Git Branch: LinearDissipativeInterconnection                            %
 % Description: Creates the matrices W and DW for the LMI optmization      %
 % Inputs: N. Integer, Scalar, Number of Agents                            %
 %         SystemDimension. Integer, Scalar, Dimension of Each Subsystem   %

@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
 % File: LMIOptimisation                                                   %
-% Git Branch: Master                                                      %
+% Git Branch: LinearDissipativeInterconnection                            %
 % Author: H. Stein Shiromoto                                              %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,7 +19,7 @@ Simulation   = 0;
 SystemStates = ['x','y','z'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-SystemParameters = 1e-6;
+SystemParameters = 1e-3;
 % SystemParameters = 0;
 lambda = 0.5;
 Option       = 'General';

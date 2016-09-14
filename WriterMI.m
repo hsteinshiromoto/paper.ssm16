@@ -49,7 +49,7 @@ if NumberOfAgents > 1
 
     
 else
-    fprintf(fid, 'sos(-MI)');
+    fprintf(fid, 'MIConstraints = [sos(-MI)];\n');
 end
 
 

@@ -1,6 +1,7 @@
-# CDC2016
-Algorithms employed in the example.
+# Algorithms for the Paper H. Stein Shiromoto and I. R. Manchester "Decentralized Nonlinear Feedback Design with Separable Control Contraction Metrics", CDC 2016
+
+These are the algorithms employed in the example.
 
 Dependencies: Yalmip and mosek
 
-To exceute, run file LMIOptimisation.m
+To execute, run file LMIOptimisation.m

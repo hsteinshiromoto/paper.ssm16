@@ -1,3 +1,7 @@
+# Cite this Repository
+[![DOI](https://zenodo.org/badge/68084183.svg)](https://zenodo.org/badge/latestdoi/68084183)
+
+
 # Algorithms for the Paper [SM16] 
 
 These are the algorithms employed in the example. They were tested on Matlab 2015b running on Windows 10.
